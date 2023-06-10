@@ -7,4 +7,4 @@
       config: "{{ lookup('file', 'test.xml') }}"
       name: test-create-from-ansible
       password: admin123
-      url: http://34.201.5.159:8080
+      url: http://172.31.9.94:8080
