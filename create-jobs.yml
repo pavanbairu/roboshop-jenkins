@@ -8,3 +8,4 @@
       name: test-create-from-ansible
       password: admin123
       url: http://172.31.9.94:8080
+      user: admin
