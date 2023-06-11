@@ -52,7 +52,7 @@ def call() {
                 }
                 steps {
                     sh 'env'
-                    sh 'Release Application'
+                    sh 'echo Release Application'
 //                    sh 'npm install'
 //                    sh 'echo $TAG_NAME >VERSION'
 //                    sh 'zip -r ${component}-${TAG_NAME}.zip node_modules server.js VERSION ${schema_dir}'
