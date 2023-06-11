@@ -20,8 +20,8 @@ def call() {
 
             stage('Code Quality') {
                 steps {
-                    sh 'sonar-scanner -Dsonar.projectKey=${component} -Dsonar.host.url=http://3.83.49.238:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.qualitygate.wait=true -Dsonar.java.binaries=./target'
-//                    sh 'echo Code Quality'
+//                    sh 'sonar-scanner -Dsonar.projectKey=${component} -Dsonar.host.url=http://3.83.49.238:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.qualitygate.wait=true -Dsonar.java.binaries=./target'
+                    sh 'echo Code Quality'
                 }
             }
 
@@ -44,19 +44,19 @@ def call() {
                 }
             }
 
-//            stage('Release Application') {
-//                when {
-//                    expression {
-//                        env.TAG_NAME ==~ ".*"
-//                    }
-//                }
+            stage('Release Application') {
+                when {
+                    expression {
+                        env.TAG_NAME ==~ ".*"
+                    }
+                }
 //                steps {
 //                    sh 'npm install'
 //                    sh 'echo $TAG_NAME >VERSION'
 //                    sh 'zip -r ${component}-${TAG_NAME}.zip node_modules server.js VERSION ${schema_dir}'
 //                    sh 'curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${component}-${TAG_NAME}.zip http://172.31.82.149:8081/repository/${component}/${component}-${TAG_NAME}.zip'
 //                }
-//            }
+            }
 
         }
 
