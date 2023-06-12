@@ -10,6 +10,10 @@ def call() {
             ansiColor('xterm')
         }
 
+        environment {
+            NEXUS = credentials('NEXUS')
+        }
+
         stages {
 
             stage('Code Compile') {
@@ -51,12 +55,10 @@ def call() {
                     }
                 }
                 steps {
-                    sh 'env'
-                    sh 'echo Release Application'
-//                    sh 'npm install'
-//                    sh 'echo $TAG_NAME >VERSION'
-//                    sh 'zip -r ${component}-${TAG_NAME}.zip node_modules server.js VERSION ${schema_dir}'
-//                    sh 'curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${component}-${TAG_NAME}.zip http://172.31.82.149:8081/repository/${component}/${component}-${TAG_NAME}.zip'
+                    sh 'mvn package ; cp target/${component}-1.0.jar ${component}.jar'
+                    sh 'echo $TAG_NAME >VERSION'
+                    sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar VERSION ${schema_dir}'
+                    sh 'curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${component}-${TAG_NAME}.zip http://172.31.95.205:8081/repository/${component}/${component}-${TAG_NAME}.zip'
                 }
             }
 
